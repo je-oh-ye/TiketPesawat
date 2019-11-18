@@ -22,12 +22,12 @@
             <TextField fx:id="txtEmail" layoutX="49.0" layoutY="141.0" prefHeight="40.0" prefWidth="224.0" promptText="Email" style="-fx-background-color: transparant; -fx-border-width: 0px 0px 1px 0px; -fx-border-color: f65a00;" />
             <TextField fx:id="txtUsername" layoutX="49.0" layoutY="208.0" prefHeight="40.0" prefWidth="224.0" promptText="Username" style="-fx-background-color: transparant; -fx-border-width: 0px 0px 1px 0px; -fx-border-color: f65a00;" />
             <PasswordField fx:id="txtPassword" layoutX="49.0" layoutY="271.0" prefHeight="40.0" prefWidth="224.0" promptText="password" style="-fx-background-color: transparant; -fx-border-width: 0px 0px 1px 0px; -fx-border-color: f65a00;" />
-            <Hyperlink fx:id="signIn" layoutX="197.0" layoutY="375.0" onAction="#signIn" text="Sign In" textFill="#f65a00">
+            <Hyperlink fx:id="signIn" layoutX="197.0" layoutY="375.0" text="Sign In" textFill="#f65a00">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Hyperlink>
-            <Button fx:id="btnRegis" layoutX="198.0" layoutY="328.0" mnemonicParsing="false" onAction="#btnRegis" prefHeight="25.0" prefWidth="68.0" text="Register" />
+            <Button fx:id="btnRegis" layoutX="198.0" layoutY="328.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="68.0" text="Register" />
          </children></Pane>
       <Pane layoutX="-5.0" style="-fx-background-color: #FFFFFF;" />
       <Pane prefHeight="468.0" prefWidth="308.0" style="-fx-background-color: #f65a00;">

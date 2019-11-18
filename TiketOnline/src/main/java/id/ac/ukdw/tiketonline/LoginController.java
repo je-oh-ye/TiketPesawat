@@ -6,6 +6,7 @@ package id.ac.ukdw.tiketonline;
  * and open the template in the editor.
  */
 
+import id.ac.ukdw.tiketonline.db.DBUtil;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
@@ -33,34 +34,29 @@ import javax.swing.JOptionPane;
  * @author User
  */
 public class LoginController implements Initializable {
-    @FXML
-    private Button btnlogin;
 
     @FXML
     private TextField txtUsername;
-
+    @FXML
+    private PasswordField txtPassword;
     @FXML
     private Hyperlink signUp;
+    @FXML
+    private Button btnLogin;
 
     @FXML
-    private PasswordField txtPass;
-
-    @FXML
-    void btnlogin(ActionEvent event) throws IOException {
+    void btnLogin(ActionEvent event) throws IOException, ClassNotFoundException {
         try{
             DBUtil db = new DBUtil();
-            String user = txtUsername.getText();//isi id yang di fxml .getText
-            String pass = txtPass.getText();//isi id yang di fxml .getText 
-            String query = "SELECT * from user WHERE username = '"+user+"' AND password =  '"+pass+"'";
+            String user = txtUsername.getText();
+            String pass = txtPassword.getText();
+            String query = "SELECT * from pengguna WHERE username = '"+user+"' AND password =  '"+pass+"'";
             ResultSet rs = db.dbExecuteQuery(query);  
             if(rs.next()){
-                String User = rs.getString(2);
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("/fxml/Menu.fxml"));
-                Parent Menu = loader.load();
-                MenuController control = loader.getController();
-                control.setUser(User);
-                Scene scene = new Scene(Menu);
+                loader.setLocation(getClass().getResource("/fxml/Home.fxml"));
+                Parent Home = loader.load();
+                Scene scene = new Scene(Home);
                 Stage Primarystage = (Stage) ((Node)event.getSource()).getScene().getWindow();
                 Primarystage.setResizable(false);
                 Primarystage.setScene(scene);
@@ -76,7 +72,7 @@ public class LoginController implements Initializable {
     @FXML
     void signUp(ActionEvent event) throws IOException {
          FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/fxml/Regis.fxml"));
+        loader.setLocation(getClass().getResource("/fxml/Register.fxml"));
         Parent Regis = loader.load();
         Scene scene = new Scene(Regis);
         Stage Primarystage = (Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -84,16 +80,7 @@ public class LoginController implements Initializable {
         Primarystage.setScene(scene);
         Primarystage.show();
     }
-
-    @FXML
-    void txtPass(ActionEvent event) {
-
-    }
-
-    @FXML
-    void txtUsername(ActionEvent event) {
-
-    }
+    
     /**
      * Initializes the controller class.
      */

@@ -12,7 +12,7 @@ import javafx.beans.property.SimpleStringProperty;
  *
  * @author asus
  */
-public class User {
+public class Pengguna {
 
     /**
      * @return the email
@@ -28,27 +28,13 @@ public class User {
         this.email = new SimpleStringProperty(email);
     }
 
-    /**
-     * @return the berat
-     */
-    public int getBerat() {
-        return berat.get();
-    }
-
-    /**
-     * @param berat the berat to set
-     */
-    public void setBerat(int berat) {
-        this.berat = new SimpleIntegerProperty(berat);
-    }
-
-    public int getId_user() {
-        return id_user.get();
+    public int getId_pengguna() {
+        return id_pengguna.get();
     }
 
   
-    public void setId_user(int id_user) {
-        this.id_user = new SimpleIntegerProperty(id_user);
+    public void setId_pengguna(int id_pengguna) {
+        this.id_pengguna = new SimpleIntegerProperty(id_pengguna);
     }
 
     public String getUsername() {
@@ -71,21 +57,20 @@ public class User {
     }
 
 
-    private SimpleIntegerProperty id_user;
+    private SimpleIntegerProperty id_pengguna;
     private SimpleStringProperty username;
     private SimpleStringProperty password;
     private SimpleStringProperty email;
-    private SimpleIntegerProperty berat;
     
-    public User(){
+    public Pengguna(){
         
     }
-    public User(int id_user, String username, String password, String email, int berat){
-        this.id_user = new SimpleIntegerProperty(id_user);
+    public Pengguna(int id_pengguna, String username, String password, String email){
+        this.id_pengguna = new SimpleIntegerProperty(id_pengguna);
         this.username = new SimpleStringProperty(username);
         this.password = new SimpleStringProperty(password);
         this.email = new SimpleStringProperty(email);
-        this.berat = new SimpleIntegerProperty(berat);
+
     }
 }
 

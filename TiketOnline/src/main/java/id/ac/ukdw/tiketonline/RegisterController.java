@@ -1,6 +1,8 @@
 package id.ac.ukdw.tiketonline;
 
+import id.ac.ukdw.tiketonline.db.DBUtil;
 import java.io.IOException;
+import java.sql.SQLException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,26 +34,26 @@ public class RegisterController {
     private Button btnRegis;
 
     @FXML
-    void btnRegis(ActionEvent event) {
-DBUtil db = new DBUtil();
-            String user = txtUsername.getText();//isi id yang di fxml .getText
-            String email = txtEmail.getText();//isi id yang di fxml .getText 
-            String pass = txtPassword.getText();//isi id yang di fxml .getText 
-            String query2 = "INSERT INTO pengguna ( username, password, email) VALUES ( '"+user+"', '"+pass+"', '"+email+"') ";
-            if(pass.isEmpty() || email.isEmpty() || user.isEmpty()){
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("REGISTER FAILED");
-                alert.setHeaderText("REGISTER FAILED !");
-                alert.setContentText("Empty Field");
-                alert.showAndWait();
-            }else{
-                db.dbExecuteUpdate(query2);
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Register Success");
-                alert.setHeaderText("Register Success");
-                alert.showAndWait();
+    void btnRegis(ActionEvent event) throws SQLException, ClassNotFoundException {
+        DBUtil db = new DBUtil();
+        String user = txtUsername.getText();//isi id yang di fxml .getText
+        String email = txtEmail.getText();//isi id yang di fxml .getText 
+        String pass = txtPassword.getText();//isi id yang di fxml .getText 
+        String query2 = "INSERT INTO pengguna ( username, password, email) VALUES ( '"+user+"', '"+pass+"', '"+email+"') ";
+        if(pass.isEmpty() || email.isEmpty() || user.isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("REGISTER FAILED");
+            alert.setHeaderText("REGISTER FAILED !");
+            alert.setContentText("Empty Field");
+            alert.showAndWait();
+        }else{
+            db.dbExecuteUpdate(query2);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Register Success");
+            alert.setHeaderText("Register Success");
+            alert.showAndWait();
 //            statement.close();
-            }
+        }
     }
 
     @FXML

@@ -44,7 +44,7 @@ public class sql {
 						   String jenis_Kelamin, String tanggal_Lahir,  
 						   String noTelepon){
 		try{
-			c = DriverManager.getConnection("jdbc:mysql://localhost/pbo?serverTimezone=UTC", "root","");
+			c = DriverManager.getConnection("jdbc:mysql:user.db);
 			s = (Statement) c.createStatement();
 			s.execute("INSERT INTO user(username,password,email,nama_lengkap,jenis_kelamin,tanggal_lahir,no_telpon)"+ 
 								"VALUES ('"+username+"','"+

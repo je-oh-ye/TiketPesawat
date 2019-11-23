@@ -11,9 +11,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="468.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="id.ac.ukdw.foodaholic.LoginController">
+<AnchorPane id="AnchorPane" prefHeight="468.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="id.ac.ukdw.tiketonline.LoginController">
    <children>
-      <Pane layoutX="308.0" layoutY="-13.0" prefHeight="468.0" prefWidth="322.0" style="-fx-background-color: #FFFFFF;" />
+      <Pane layoutX="308.0" prefHeight="455.0" prefWidth="322.0" style="-fx-background-color: #FFFFFF;" />
       <Pane layoutX="-5.0" style="-fx-background-color: #FFFFFF;" />
       <Pane prefHeight="468.0" prefWidth="308.0" style="-fx-background-color: #f65a00;">
          <children>
@@ -29,7 +29,7 @@
             </Text>
          </children>
       </Pane>
-      <Button fx:id="btnlogin" layoutX="343.0" layoutY="334.0" mnemonicParsing="false" onAction="#btnlogin" prefHeight="39.0" prefWidth="224.0" style="-fx-background-color: f65a00;" text="Login" textFill="GAINSBORO">
+      <Button fx:id="btnLogin" layoutX="343.0" layoutY="334.0" mnemonicParsing="false" onAction="#btnLogin" prefHeight="39.0" prefWidth="224.0" style="-fx-background-color: f65a00;" text="Login" textFill="GAINSBORO">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -50,12 +50,12 @@
             <Image url="@../gambar/Capture1.PNG" />
          </image>
       </ImageView>
-      <TextField fx:id="txtUsername" layoutX="343.0" layoutY="194.0" onAction="#txtUsername" prefHeight="40.0" prefWidth="224.0" promptText="Username" style="-fx-background-color: transparant; -fx-border-width: 0px 0px 1px 0px; -fx-border-color: f65a00;" />
+      <TextField fx:id="txtUsername" layoutX="343.0" layoutY="194.0" prefHeight="40.0" prefWidth="224.0" promptText="Username" style="-fx-background-color: transparant; -fx-border-width: 0px 0px 1px 0px; -fx-border-color: f65a00;" />
       <Hyperlink fx:id="signUp" layoutX="445.0" layoutY="386.0" onAction="#signUp" text="Signup" textFill="#f65a00">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Hyperlink>
-      <PasswordField fx:id="txtPass" layoutX="342.0" layoutY="257.0" onAction="#txtPass" prefHeight="40.0" prefWidth="224.0" promptText="password" style="-fx-background-color: transparant; -fx-border-width: 0px 0px 1px 0px; -fx-border-color: f65a00;" />
+      <PasswordField fx:id="txtPassword" layoutX="342.0" layoutY="257.0" prefHeight="40.0" prefWidth="224.0" promptText="password" style="-fx-background-color: transparant; -fx-border-width: 0px 0px 1px 0px; -fx-border-color: f65a00;" />
    </children>
 </AnchorPane>

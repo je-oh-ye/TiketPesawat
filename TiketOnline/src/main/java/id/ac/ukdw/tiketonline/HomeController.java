@@ -7,6 +7,7 @@ package id.ac.ukdw.tiketonline;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -46,7 +47,7 @@ public class HomeController implements Initializable {
     private DatePicker date;
     @FXML
     private ComboBox<String> comboboxClass;
-     @FXML
+    @FXML
     private Button btnLogout1;
 
     @FXML
@@ -75,8 +76,15 @@ public class HomeController implements Initializable {
 
     @FXML
     private void btnSearch(ActionEvent event) throws IOException {
+        String asal = txtForm.getText();//isi id yang di fxml .getText
+        String tujuan = txtTo.getText();//isi id yang di fxml .getText 
+        String adult = txtAdult.getText();//isi id yang di fxml .getText
+        String infant = txtInfant.getText();//isi id yang di fxml .getText
+        String child = txtChild.getText();//isi id yang di fxml .getText 
+        LocalDate date1 = date.getValue();
+        String kelas = comboboxClass.getValue();
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/fxml/Pesawat.fxml"));
+        loader.setLocation(getClass().getResource("/fxml/Daftar.fxml"));
         Parent Regis = loader.load();
         Scene scene = new Scene(Regis);
         Stage Primarystage = (Stage) ((Node)event.getSource()).getScene().getWindow();

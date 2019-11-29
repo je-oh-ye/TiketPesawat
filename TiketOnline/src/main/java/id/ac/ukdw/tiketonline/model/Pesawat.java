@@ -13,9 +13,6 @@ import javafx.beans.property.SimpleStringProperty;
  * @author asus
  */
 public class Pesawat {
-    /**
-     * @return the id_pesawat
-     */
     public int getId_pesawat() {
         return id_pesawat.get();
     }
@@ -48,9 +45,7 @@ public class Pesawat {
         return kota_asal.get();
     }
 
-    /**
-     * @param asal the asal to set
-     */
+
     public void setAsal(String kota_asal) {
         this.kota_asal =new SimpleStringProperty(kota_asal);
     }
@@ -62,9 +57,7 @@ public class Pesawat {
         return kota_tujuan.get();
     }
 
-    /**
-     * @param tujuan the tujuan to set
-     */
+  
     public void setTujuan(String kota_tujuan) {
         this.kota_tujuan = new SimpleStringProperty(kota_tujuan);
     }

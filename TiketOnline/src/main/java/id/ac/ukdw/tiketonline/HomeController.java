@@ -5,8 +5,10 @@
  */
 package id.ac.ukdw.tiketonline;
 
+import id.ac.ukdw.tiketonline.db.DBUtil;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -18,6 +20,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -30,7 +33,7 @@ import javafx.stage.Stage;
  * @author User
  */
 public class HomeController implements Initializable {
-
+    DBUtil db= new DBUtil();
     @FXML
     private Button btnSearch;
     @FXML
@@ -75,7 +78,7 @@ public class HomeController implements Initializable {
      
 
     @FXML
-    private void btnSearch(ActionEvent event) throws IOException {
+    private void btnSearch(ActionEvent event) throws IOException, SQLException, ClassNotFoundException {
         String asal = txtForm.getText();//isi id yang di fxml .getText
         String tujuan = txtTo.getText();//isi id yang di fxml .getText 
         String adult = txtAdult.getText();//isi id yang di fxml .getText
@@ -83,6 +86,16 @@ public class HomeController implements Initializable {
         String child = txtChild.getText();//isi id yang di fxml .getText 
         LocalDate date1 = date.getValue();
         String kelas = comboboxClass.getValue();
+        String query = "INSERT INTO search (asal1, tujuan1, adult1, infant1, child1, date1, kelas1) VALUES ('"+asal+"','"+tujuan+"','"+adult+"','"+infant+"','"+child+"','"+date1+"','"+kelas+"') ";
+        db.dbExecuteUpdate(query);
+         if(asal.isEmpty() || tujuan.isEmpty() || adult.isEmpty() && infant.isEmpty() && child.isEmpty()){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("SEARCH FAILED");
+                alert.setHeaderText("SEARCH FAILED !");
+                alert.setContentText("Empty Field");
+                alert.showAndWait();
+         }
+         else{
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/fxml/Daftar.fxml"));
         Parent Regis = loader.load();
@@ -91,6 +104,7 @@ public class HomeController implements Initializable {
         Primarystage.setResizable(false);
         Primarystage.setScene(scene);
         Primarystage.show();
+        }
     }
     
 }

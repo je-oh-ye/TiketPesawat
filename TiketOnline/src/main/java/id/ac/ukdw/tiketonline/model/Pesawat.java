@@ -79,6 +79,20 @@ public class Pesawat {
     /**
      * @return the kelas
      */
+        /**
+     * @return the date
+     */
+    public String getTanggal() {
+        return tanggal.get();
+    }
+
+    /**
+     * @param date the date to set
+     */
+    public void setTanggal(String tanggal) {
+        this.tanggal = new SimpleStringProperty(tanggal);
+    }
+
     public String getKelas() {
         return kelas.get();
     }
@@ -123,6 +137,7 @@ public class Pesawat {
     private SimpleStringProperty kota_asal;
     private SimpleStringProperty kota_tujuan;
     private SimpleIntegerProperty jumlah_kursi;
+    private SimpleStringProperty tanggal;
     private SimpleStringProperty kelas;
     private SimpleIntegerProperty jam_berangkat;
     private SimpleIntegerProperty harga;
@@ -130,16 +145,18 @@ public class Pesawat {
     public Pesawat(){
         
     }
-    public Pesawat(int id_pesawat, String maskapai, String kota_asal, String kota_tujuan, int jumlah_kursi, String kelas, int jam_berangkat, int harga){
+    public Pesawat(int id_pesawat, String maskapai, String kota_asal, String kota_tujuan, int jumlah_kursi, String tanggal, String kelas, int jam_berangkat, int harga){
         this.id_pesawat = new SimpleIntegerProperty(id_pesawat);
         this.maskapai = new SimpleStringProperty(maskapai);
         this.kota_asal = new SimpleStringProperty(kota_asal);
         this.kota_tujuan = new SimpleStringProperty(kota_tujuan);
         this.jumlah_kursi = new SimpleIntegerProperty(jumlah_kursi);
+        this.tanggal = new SimpleStringProperty(tanggal);
         this.kelas = new SimpleStringProperty(kelas);
         this.jam_berangkat = new SimpleIntegerProperty(jam_berangkat);
         this.harga = new SimpleIntegerProperty(harga);
     }   
+
 
     
 }

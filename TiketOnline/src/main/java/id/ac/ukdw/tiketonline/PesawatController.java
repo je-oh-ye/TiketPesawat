@@ -5,12 +5,10 @@
  */
 package id.ac.ukdw.tiketonline;
 
-import id.ac.ukdw.tiketonline.LoginController;
 import id.ac.ukdw.tiketonline.db.DBUtil;
 import id.ac.ukdw.tiketonline.db.PesawatDAO;
-import id.ac.ukdw.tiketonline.db.PesawatDAO;
 import id.ac.ukdw.tiketonline.model.Pesawat;
-import id.ac.ukdw.tiketonline.model.Pesawat;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,11 +18,18 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -57,6 +62,10 @@ public class PesawatController implements Initializable {
     private TableColumn<Pesawat, Integer> col_jam;
     @FXML
     private TableColumn<Pesawat, Integer> col_harga;
+    @FXML
+    private Button back;
+    
+      ObservableList<Pesawat> data = FXCollections.observableArrayList();
 
     public void SerchTabel() throws SQLException, ClassNotFoundException{
         col_maskapai.setCellValueFactory(new PropertyValueFactory("maskapai"));
@@ -67,26 +76,26 @@ public class PesawatController implements Initializable {
         col_jam.setCellValueFactory(new PropertyValueFactory("jam_berangkat"));
         col_harga.setCellValueFactory(new PropertyValueFactory("harga"));
         
-         ObservableList<Pesawat> data = FXCollections.observableArrayList();
+       
         String asal1 = asal;
         String tujuan1 = tujuan;
         String kelas1 = kelas;
         LocalDate tanggal = date1;
         String sql = "SELECT * FROM pesawat WHERE kota_asal LIKE '%"+asal1+"%' AND '%"+tujuan1+"%' AND '%"+kelas1+"%' AND '%"+tanggal+"%'";
-        ResultSet rs =db.dbExecuteQuery(sql);
-           while (rs.next()) {
-            Pesawat pesawat = new Pesawat();
-            pesawat.setMaskapai(rs.getString("maskapai"));
-            pesawat.setAsal(rs.getString("kota_asal")) ;
-            pesawat.setTujuan(rs.getString("kota_tujuan"));
-            pesawat.setJumlah(rs.getInt("jumlah_kursi"));
-            pesawat.setKelas(rs.getString("class"));
-            pesawat.setJam(rs.getInt("jam_berangkat"));
-            pesawat.setHarga(rs.getInt("harga"));
-            data.add(pesawat);
+        try (ResultSet rs = db.dbExecuteQuery(sql)) {
+            while (rs.next()) {
+                Pesawat pesawat = new Pesawat();
+                pesawat.setMaskapai(rs.getString("maskapai"));
+                pesawat.setAsal(rs.getString("kota_asal")) ;
+                pesawat.setTujuan(rs.getString("kota_tujuan"));
+                pesawat.setJumlah(rs.getInt("jumlah_kursi"));
+                pesawat.setKelas(rs.getString("class"));
+                pesawat.setJam(rs.getInt("jam_berangkat"));
+                pesawat.setHarga(rs.getInt("harga"));
+                data.add(pesawat);
+            }
+            tabelPesawat.setItems(data);
         }
-        tabelPesawat.setItems(data);
-        rs.close();
 
     }        
         public void ShowTabel(){
@@ -98,7 +107,7 @@ public class PesawatController implements Initializable {
         col_jam.setCellValueFactory(new PropertyValueFactory("jam_berangkat"));
         col_harga.setCellValueFactory(new PropertyValueFactory("harga"));
         
-        ObservableList<Pesawat> data;
+//        ObservableList<Pesawat> data;
         try {
             
             data = PesawatDAO.searchPesawat();
@@ -114,5 +123,17 @@ public class PesawatController implements Initializable {
             // TODO
             this.ShowTabel();
         
+    }
+
+    @FXML
+    private void heandleback(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/fxml/Home.fxml"));
+        Parent Login = loader.load();
+        Scene scene = new Scene(Login);
+        Stage Primarystage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Primarystage.setResizable(false);
+        Primarystage.setScene(scene);
+        Primarystage.show();
     }
 }    

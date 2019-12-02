@@ -97,7 +97,7 @@ public class HomeController implements Initializable {
          }
          else{
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/fxml/Daftar.fxml"));
+        loader.setLocation(getClass().getResource("/fxml/Pesawat.fxml"));
         Parent Regis = loader.load();
         Scene scene = new Scene(Regis);
         Stage Primarystage = (Stage) ((Node)event.getSource()).getScene().getWindow();

@@ -59,7 +59,7 @@ public class PesawatController implements Initializable {
     
     @FXML
     public void btnPilih(ActionEvent event){
-//        String query = "INSERT INTO 'detail' ('')"
+        
         
     }
     
@@ -70,7 +70,7 @@ public class PesawatController implements Initializable {
     
 //    public void SearcTable() throws SQLException, ClassNotFoundException{
 //        int i = 1;
-<<<<<<< HEAD
+
 //         String queryStmt  = "SELECT * FROM search WHERE id_search = '"+i+"'";
 //        ResultSet rs = db.dbExecuteQuery(queryStmt);
 //        rs.next();
@@ -140,79 +140,4 @@ public class PesawatController implements Initializable {
 
    }
 }
-=======
-//        String sql = "SELECT * FROM search WHERE id_search = '"+i+"'";
-//        ResultSet rs = db.dbExecuteQuery(sql);
-//        while(rs.next()){
-//        String asal1 = rs.getString(2);
-//        String tujuan1= rs.getString(3) ;
-//        String tanggal1= rs.getString(7);
-//        String kelas1 = rs.getString(8);
-//        i++;
-//        }
-//        rs.close();
-//       
-//    }
-    public void ShowTable() throws SQLException, ClassNotFoundException {
-        col_maskapai.setCellValueFactory(new PropertyValueFactory("maskapai"));
-        col_asal.setCellValueFactory(new PropertyValueFactory("kota_asal"));
-        col_tujuan.setCellValueFactory(new PropertyValueFactory("kota_tujuan"));
-        col_kursi.setCellValueFactory(new PropertyValueFactory("jumlah_kursi"));
-        col_class.setCellValueFactory(new PropertyValueFactory("kelas"));
-        col_jam.setCellValueFactory(new PropertyValueFactory("jam_berangkat"));
-        col_harga.setCellValueFactory(new PropertyValueFactory("harga"));
-        
-        ObservableList<Pesawat> data = FXCollections.observableArrayList();
-        String sql = "SELECT * FROM pesawat WHERE kota_asal LIKE '%"+asal1+"%' AND kota_tujuan LIKE '%"+tujuan1+"%' AND tanggal LIKE '%"+tanggal1+"%' AND kelas LIKE '%"+kelas1+"%'";
-        ResultSet rs1 = db.dbExecuteQuery(sql);
-        try {
-            while(rs1.next()){
-            Pesawat pesawat = new Pesawat();
-            pesawat.setId_pesawat(rs1.getInt("id_pesawat"));
-            pesawat.setMaskapai(rs1.getString("maskapai"));
-            pesawat.setKota_asal(rs1.getString("kota_asal"));
-            pesawat.setKota_tujuan(rs1.getString("kota_tujuan"));
-            pesawat.setJumlah_kursi(rs1.getInt("jumlah_kursi"));
-            pesawat.setTanggal(rs1.getString("tanggal"));
-            pesawat.setKelas(rs1.getString("kelas"));
-            pesawat.setJam_berangkat(rs1.getString("jam_berangkat"));
-            pesawat.setHarga(rs1.getInt("harga"));
-        
-            data.add(pesawat);
-            }
-                tabelPesawat.setItems(data);
-           rs1.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(PesawatController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    
-    }
-    
-    
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {    
-        col_maskapai.setCellValueFactory(new PropertyValueFactory("maskapai"));
-        col_asal.setCellValueFactory(new PropertyValueFactory("kota_asal"));
-        col_tujuan.setCellValueFactory(new PropertyValueFactory("kota_tujuan"));
-        col_kursi.setCellValueFactory(new PropertyValueFactory("jumlah_kursi"));
-        col_class.setCellValueFactory(new PropertyValueFactory("kelas"));
-        col_jam.setCellValueFactory(new PropertyValueFactory("jam_berangkat"));
-        col_harga.setCellValueFactory(new PropertyValueFactory("harga"));
-        
-         ObservableList<Pesawat> data ;
-           try {
-   
-            data = PesawatDAO.searchPesawat();
-            tabelPesawat.setItems(data);
-        } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-//        ShowTable();
-//        } catch (SQLException ex) {
-//            Logger.getLogger(PesawatController.class.getName()).log(Level.SEVERE, null, ex);
-//        } catch (ClassNotFoundException ex) {
-//            Logger.getLogger(PesawatController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-        }
-   }
->>>>>>> 1f7c968ca557987349a067ef06925f809f6c30ba
+

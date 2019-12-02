@@ -57,8 +57,44 @@ public class PesawatController implements Initializable {
     private TableColumn<Pesawat, Integer> col_harga;
     
 
-    public void searchTabel() throws SQLException, ClassNotFoundException{
-        col_maskapai.setCellValueFactory(new PropertyValueFactory("maskapai"));
+//    public void searchTabel() throws SQLException, ClassNotFoundException{
+//        col_maskapai.setCellValueFactory(new PropertyValueFactory("maskapai"));
+//        col_asal.setCellValueFactory(new PropertyValueFactory("kota_asal"));
+//        col_tujuan.setCellValueFactory(new PropertyValueFactory("kota_tujuan"));
+//        col_kursi.setCellValueFactory(new PropertyValueFactory("jumlah_kursi"));
+//        col_class.setCellValueFactory(new PropertyValueFactory("kelas"));
+//        col_jam.setCellValueFactory(new PropertyValueFactory("jam_berangkat"));
+//        col_harga.setCellValueFactory(new PropertyValueFactory("harga"));
+//        
+//        ObservableList<Pesawat> data = FXCollections.observableArrayList();
+//        int i = 1;
+//        ResultSet rs1 = db.dbExecuteQuery("SELECT * from search WHERE id_pesawat = '"+i+"'");
+//        rs1.next();
+//        String asal1 = rs1.getString(2);
+//        String tujuan1 = rs1.getString(3);
+//        int kelas1 = rs1.getInt(7);
+//        String date1 =rs1.getString(6);
+//        i++;
+//        rs1.close();
+//        String sql = "SELECT * FROM pesawat WHERE kota_asal LIKE '%"+asal1+"%' AND '%"+tujuan1+"%' AND '%"+kelas1+"%' AND '%"+date1+"%'";
+//        try (ResultSet rs = db.dbExecuteQuery(sql)) {
+//            while (rs.next()) {
+//                Pesawat pesawat = new Pesawat();
+//                pesawat.setMaskapai(rs.getString("maskapai"));
+//                pesawat.setAsal(rs.getString("kota_asal")) ;
+//                pesawat.setTujuan(rs.getString("kota_tujuan"));
+//                pesawat.setJumlah(rs.getInt("jumlah_kursi"));
+//                pesawat.setKelas(rs.getString("kelas"));
+//                pesawat.setJam(rs.getInt("jam_berangkat"));
+//                pesawat.setHarga(rs.getInt("harga"));
+//                data.add(pesawat);
+//            }
+//            tabelPesawat.setItems(data);
+//        }
+//
+//    }        
+        public void ShowTabel() {
+             col_maskapai.setCellValueFactory(new PropertyValueFactory("maskapai"));
         col_asal.setCellValueFactory(new PropertyValueFactory("kota_asal"));
         col_tujuan.setCellValueFactory(new PropertyValueFactory("kota_tujuan"));
         col_kursi.setCellValueFactory(new PropertyValueFactory("jumlah_kursi"));
@@ -66,45 +102,18 @@ public class PesawatController implements Initializable {
         col_jam.setCellValueFactory(new PropertyValueFactory("jam_berangkat"));
         col_harga.setCellValueFactory(new PropertyValueFactory("harga"));
         
-        ObservableList<Pesawat> data = FXCollections.observableArrayList();
-        int i = 1;
-        ResultSet rs1 = db.dbExecuteQuery("SELECT * from search WHERE id_pesawat = '"+i+"'");
-        rs1.next();
-        String asal1 = rs1.getString(2);
-        String tujuan1 = rs1.getString(3);
-        int kelas1 = rs1.getInt(7);
-        String date1 =rs1.getString(6);
-        i++;
-        rs1.close();
-        String sql = "SELECT * FROM pesawat WHERE kota_asal LIKE '%"+asal1+"%' AND '%"+tujuan1+"%' AND '%"+kelas1+"%' AND '%"+date1+"%'";
-        try (ResultSet rs = db.dbExecuteQuery(sql)) {
-            while (rs.next()) {
-                Pesawat pesawat = new Pesawat();
-                pesawat.setMaskapai(rs.getString("maskapai"));
-                pesawat.setAsal(rs.getString("kota_asal")) ;
-                pesawat.setTujuan(rs.getString("kota_tujuan"));
-                pesawat.setJumlah(rs.getInt("jumlah_kursi"));
-                pesawat.setKelas(rs.getString("kelas"));
-                pesawat.setJam(rs.getInt("jam_berangkat"));
-                pesawat.setHarga(rs.getInt("harga"));
-                data.add(pesawat);
-            }
+        ObservableList<Pesawat> data;
+        try {
+            db.dbConnect();
+            data = PesawatDAO.searchPesawat();
             tabelPesawat.setItems(data);
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-    }        
-//        public void ShowTabel() throws SQLException, ClassNotFoundException{
-//            this.SerachTabe();
-//       
-//    }
+       
+    }
     @Override
     public void initialize(URL location, ResourceBundle resources) { 
-        try {
-            this.searchTabel();
-        } catch (SQLException ex) {
-            Logger.getLogger(PesawatController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(PesawatController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }    
+       ShowTabel();
+    }
 }

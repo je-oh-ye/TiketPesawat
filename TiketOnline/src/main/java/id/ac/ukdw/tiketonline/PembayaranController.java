@@ -7,6 +7,8 @@ package id.ac.ukdw.tiketonline;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -24,9 +26,9 @@ public class PembayaranController implements Initializable {
     @FXML
     private Button back;
     @FXML
-    private ComboBox<?> miniMarket;
+    private ComboBox<String> miniMarket;
     @FXML
-    private ComboBox<?> bank;
+    private ComboBox<String> bank;
     @FXML
     private Button bayar;
     @FXML
@@ -37,9 +39,16 @@ public class PembayaranController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    ObservableList<String> mini = FXCollections.observableArrayList("INDOMARET","ALFAMART");
+    ObservableList<String> data = FXCollections.observableArrayList("BRI","BNI","MANDIRI","MANDIRI SYARIAH","BCA","BANK LAIN");
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        miniMarket.getItems().addAll("INDOMARET","ALFAMART");
+        miniMarket.getSelectionModel().select("Mini Market");
+        
+        bank.getItems().addAll("BRI","BNI","MANDIRI","MANDIRI SYARIAH","BCA","BANK LAIN");
+        bank.getSelectionModel().select("Bank");
     }    
 
     @FXML

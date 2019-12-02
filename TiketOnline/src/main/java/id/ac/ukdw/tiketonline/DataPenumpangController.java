@@ -7,6 +7,8 @@ package id.ac.ukdw.tiketonline;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -32,16 +34,19 @@ public class DataPenumpangController implements Initializable {
     @FXML
     private TextField nKTP;
     @FXML
-    private ComboBox<?> title;
+    private ComboBox<String> title;
     @FXML
     private Button next;
 
     /**
      * Initializes the controller class.
      */
+     ObservableList<String> data = FXCollections.observableArrayList("TUAN","NYONYA");
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        title.getItems().addAll("TUAN","NYONYA");
+        title.getSelectionModel().select(" ");
     }    
 
     @FXML

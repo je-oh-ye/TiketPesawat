@@ -58,6 +58,7 @@ public class PesawatController extends HomeController {
     
     @FXML
     public void btnPilih(ActionEvent event){
+//        String query = "INSERT INTO 'detail' ('')"
         
     }
     
@@ -66,20 +67,20 @@ public class PesawatController extends HomeController {
 
     }   
     
-    public void SearcTable() throws SQLException, ClassNotFoundException{
-        int i = 1;
-        String sql = "SELECT * FROM search WHERE id_search = '"+i+"'";
-        ResultSet rs = db.dbExecuteQuery(sql);
-        while(rs.next()){
-        String asal1 = rs.getString(2);
-        String tujuan1= rs.getString(3) ;
-        String tanggal1= rs.getString(7);
-        String kelas1 = rs.getString(8);
-        i++;
-        }
-        rs.close();
-       
-    }
+//    public void SearcTable() throws SQLException, ClassNotFoundException{
+//        int i = 1;
+//        String sql = "SELECT * FROM search WHERE id_search = '"+i+"'";
+//        ResultSet rs = db.dbExecuteQuery(sql);
+//        while(rs.next()){
+//        String asal1 = rs.getString(2);
+//        String tujuan1= rs.getString(3) ;
+//        String tanggal1= rs.getString(7);
+//        String kelas1 = rs.getString(8);
+//        i++;
+//        }
+//        rs.close();
+//       
+//    }
     public void ShowTable() throws SQLException, ClassNotFoundException {
         col_maskapai.setCellValueFactory(new PropertyValueFactory("maskapai"));
         col_asal.setCellValueFactory(new PropertyValueFactory("kota_asal"));
@@ -118,28 +119,27 @@ public class PesawatController extends HomeController {
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {    
-        try {
-            //        col_maskapai.setCellValueFactory(new PropertyValueFactory("maskapai"));
-//        col_asal.setCellValueFactory(new PropertyValueFactory("kota_asal"));
-//        col_tujuan.setCellValueFactory(new PropertyValueFactory("kota_tujuan"));
-//        col_kursi.setCellValueFactory(new PropertyValueFactory("jumlah_kursi"));
-//        col_class.setCellValueFactory(new PropertyValueFactory("kelas"));
-//        col_jam.setCellValueFactory(new PropertyValueFactory("jam_berangkat"));
-//        col_harga.setCellValueFactory(new PropertyValueFactory("harga"));
-//        
-//         ObservableList<Pesawat> data ;
-//           try {
-//   
-//            data = PesawatDAO.searchPesawat();
-//            tabelPesawat.setItems(data);
-//        } catch (SQLException | ClassNotFoundException ex) {
-//            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        col_maskapai.setCellValueFactory(new PropertyValueFactory("maskapai"));
+        col_asal.setCellValueFactory(new PropertyValueFactory("kota_asal"));
+        col_tujuan.setCellValueFactory(new PropertyValueFactory("kota_tujuan"));
+        col_kursi.setCellValueFactory(new PropertyValueFactory("jumlah_kursi"));
+        col_class.setCellValueFactory(new PropertyValueFactory("kelas"));
+        col_jam.setCellValueFactory(new PropertyValueFactory("jam_berangkat"));
+        col_harga.setCellValueFactory(new PropertyValueFactory("harga"));
+        
+         ObservableList<Pesawat> data ;
+           try {
+   
+            data = PesawatDAO.searchPesawat();
+            tabelPesawat.setItems(data);
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+//        ShowTable();
+//        } catch (SQLException ex) {
+//            Logger.getLogger(PesawatController.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (ClassNotFoundException ex) {
+//            Logger.getLogger(PesawatController.class.getName()).log(Level.SEVERE, null, ex);
 //        }
-ShowTable();
-        } catch (SQLException ex) {
-            Logger.getLogger(PesawatController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(PesawatController.class.getName()).log(Level.SEVERE, null, ex);
         }
    }
-}

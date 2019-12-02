@@ -36,7 +36,7 @@ import javafx.stage.Stage;
  *
  * @author asus
  */
-public class PesawatController implements Initializable {
+public class PesawatController extends HomeController {
     DBUtil db= new DBUtil();
     
     @FXML

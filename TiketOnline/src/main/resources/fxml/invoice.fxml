@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="514.0" prefWidth="438.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="id.ac.ukdw.tiketonline.InvoiceController">
+   <children>
+      <Pane layoutX="-9.0" prefHeight="100.0" prefWidth="447.0" style="-fx-background-color: #f65a00;">
+         <children>
+            <ImageView fitHeight="100.0" fitWidth="113.0" layoutX="171.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../gambar/Capture.PNG" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <TextField fx:id="berangkat" layoutX="73.0" layoutY="147.0" prefHeight="26.0" prefWidth="88.0" />
+      <TextField fx:id="tiba" layoutX="265.0" layoutY="147.0" prefHeight="26.0" prefWidth="88.0" />
+      <Text layoutX="87.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Berangkat" textAlignment="CENTER" />
+      <Text layoutX="296.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tiba" textAlignment="CENTER" />
+      <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="185.0" layoutY="131.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../gambar/output-onlinepngtools.png" />
+         </image>
+      </ImageView>
+      <Text layoutX="167.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kode Booking" />
+      <TextField fx:id="kotaAsal" layoutX="59.0" layoutY="260.0" prefHeight="26.0" prefWidth="88.0" />
+      <TextField fx:id="kotaTujuan" layoutX="59.0" layoutY="340.0" prefHeight="26.0" prefWidth="88.0" />
+      <Circle fill="DODGERBLUE" layoutX="173.0" layoutY="273.0" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fill="DODGERBLUE" layoutX="173.0" layoutY="353.0" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
+      <Line endY="93.0" layoutX="173.0" layoutY="256.0" startY="22.0" />
+      <TextField fx:id="bandaraAsal" layoutX="193.0" layoutY="260.0" prefHeight="26.0" prefWidth="88.0" />
+      <TextField fx:id="bandaraTiba" layoutX="193.0" layoutY="340.0" prefHeight="26.0" prefWidth="88.0" />
+      <Line endX="329.0" layoutX="104.0" layoutY="187.0" startX="-100.0" />
+      <Line endX="329.0" layoutX="104.0" layoutY="206.0" startX="-100.0" />
+      <Line endX="329.0" layoutX="104.0" layoutY="385.0" startX="-100.0" />
+      <Line endX="329.0" layoutX="104.0" layoutY="403.0" startX="-100.0" />
+      <Text layoutX="179.0" layoutY="399.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Penumpang" />
+      <TextField fx:id="code" layoutX="175.0" layoutY="217.0" prefHeight="26.0" prefWidth="88.0" />
+      <Text layoutX="132.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="code" />
+      <Text layoutX="103.0" layoutY="447.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nama " />
+      <TextField fx:id="namaPenumpang" layoutX="171.0" layoutY="429.0" prefHeight="26.0" prefWidth="88.0" />
+   </children>
+</AnchorPane>

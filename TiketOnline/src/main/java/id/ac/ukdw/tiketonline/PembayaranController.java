@@ -88,10 +88,17 @@ public class PembayaranController implements Initializable {
     }
 
     @FXML
-    private void hendleBayar(ActionEvent event) {
+    private void hendleBayar(ActionEvent event) throws IOException {
            String bayar = miniMarket.getValue();
            String bayar1 = bank.getValue();
-        
+                FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/fxml/invoice.fxml"));
+        Parent Regis = loader.load();
+        Scene scene = new Scene(Regis);
+        Stage Primarystage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Primarystage.setResizable(false);
+        Primarystage.setScene(scene);
+        Primarystage.show();
     }
     
 }

@@ -34,11 +34,12 @@ import javax.swing.JOptionPane;
  * @author LENOVO
  */
 public class DataPenumpangController implements Initializable {
-      DBUtil db= new DBUtil();
-      private String asal1 ;
-    private String tujuan1 ;
+
+    DBUtil db = new DBUtil();
+    private String asal1;
+    private String tujuan1;
     private String tanggal1;
-    private String kelas1 ;
+    private String kelas1;
     @FXML
     private Button back;
     @FXML
@@ -57,13 +58,14 @@ public class DataPenumpangController implements Initializable {
     /**
      * Initializes the controller class.
      */
-     ObservableList<String> data = FXCollections.observableArrayList("TUAN","NYONYA");
+    ObservableList<String> data = FXCollections.observableArrayList("TUAN", "NYONYA");
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        title.getItems().addAll("TUAN","NYONYA");
+        title.getItems().addAll("TUAN", "NYONYA");
         title.getSelectionModel().select(" ");
-    }    
+    }
 
     @FXML
     private void heandleback(ActionEvent event) throws IOException {
@@ -71,7 +73,7 @@ public class DataPenumpangController implements Initializable {
         loader.setLocation(getClass().getResource("/fxml/Pesawat.fxml"));
         Parent Regis = loader.load();
         Scene scene = new Scene(Regis);
-        Stage Primarystage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Stage Primarystage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Primarystage.setResizable(false);
         Primarystage.setScene(scene);
         Primarystage.show();
@@ -83,28 +85,26 @@ public class DataPenumpangController implements Initializable {
         String Title = title.getValue();
         String nama_depan = namaDepan.getText();//isi id yang di fxml .getText
         String nama_belakang = namaBelakang.getText();//isi id yang di fxml .getText 
-        String query2 = "INSERT INTO detail_penumpang (title, nama_depan, nama_belakang) VALUES ('"+Title+"', '"+nama_depan+"', '"+nama_belakang+"') ";
-        try{
+        String query2 = "INSERT INTO detail_penumpang (title, nama_depan, nama_belakang) VALUES ('" + Title + "', '" + nama_depan + "', '" + nama_belakang + "') ";
+        try {
             db.dbExecuteUpdate(query2);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Register Success");
             alert.setHeaderText("Register Success");
             alert.showAndWait();
-             FXMLLoader loader = new FXMLLoader();
+            FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/fxml/pembayaran.fxml"));
             Parent Regis = loader.load();
             Scene scene = new Scene(Regis);
-            Stage Primarystage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            Stage Primarystage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Primarystage.setResizable(false);
             Primarystage.setScene(scene);
             Primarystage.show();
-//            statement.close();
+//          statement.close();
+        } catch (SQLException e) {
+            Logger.getLogger(PesawatController.class.getName()).log(Level.SEVERE, null, e);
         }
-        catch(SQLException e){
-           Logger.getLogger(PesawatController.class.getName()).log(Level.SEVERE, null, e);
-        }
-        
-        
+
     }
-    
+
 }

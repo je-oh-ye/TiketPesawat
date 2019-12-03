@@ -90,7 +90,7 @@ public class PembayaranController implements Initializable {
     @FXML
     private void hendleBayar(ActionEvent event) {
            String bayar = miniMarket.getValue();
-//           String bayar1 = bank.getValue();
+           String bayar1 = bank.getValue();
         
     }
     

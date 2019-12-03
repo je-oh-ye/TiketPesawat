@@ -45,20 +45,20 @@ public class PembayaranController implements Initializable {
     @FXML
     private Button bayar;
     @FXML
-    private TextField Asal;
+    private TextField txtAsal;
     @FXML
-    private TextField tujuan;
+    private TextField txtTujuan;
 
     /**
      * Initializes the controller class.
      */
     
        public void Tampilkan(String maskapai) throws SQLException, ClassNotFoundException{
-            String queryStmt = "SELECT * from detail WHERE maskapai";
+            String queryStmt = "SELECT * from detail_pesawat ";
             ResultSet rs = db.dbExecuteQuery(queryStmt);
             rs.next();
-            Asal.setText(rs.getString(3));
-            tujuan.setText(rs.getString(4));
+            txtAsal.setText(rs.getString(3));
+            txtTujuan.setText(rs.getString(4));
             rs.close();
         }
     
@@ -91,7 +91,7 @@ public class PembayaranController implements Initializable {
     private void hendleBayar(ActionEvent event) throws IOException {
            String bayar = miniMarket.getValue();
            String bayar1 = bank.getValue();
-                FXMLLoader loader = new FXMLLoader();
+          FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/fxml/invoice.fxml"));
         Parent Regis = loader.load();
         Scene scene = new Scene(Regis);

@@ -35,6 +35,7 @@ import javafx.stage.Stage;
  */
 public class PembayaranController implements Initializable {
     DBUtil db= new DBUtil();
+    String nama_depan;
 
     @FXML
     private Button back;
@@ -53,12 +54,12 @@ public class PembayaranController implements Initializable {
      * Initializes the controller class.
      */
     
-       public void Tampilkan(String maskapai) throws SQLException, ClassNotFoundException{
+       public void Tampilkan() throws SQLException, ClassNotFoundException{
             String queryStmt = "SELECT * from detail_pesawat ";
             ResultSet rs = db.dbExecuteQuery(queryStmt);
             rs.next();
-            txtAsal.setText(rs.getString(3));
-            txtTujuan.setText(rs.getString(4));
+            txtAsal.setText(rs.getString("asal"));
+            txtTujuan.setText(rs.getString("tujuan"));
             rs.close();
         }
     
@@ -66,7 +67,14 @@ public class PembayaranController implements Initializable {
     ObservableList<String> data = FXCollections.observableArrayList("BRI","BNI","MANDIRI","MANDIRI SYARIAH","BCA","BANK LAIN");
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        try {
+            // TODO
+            this.Tampilkan();
+        } catch (SQLException ex) {
+            Logger.getLogger(PembayaranController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(PembayaranController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         miniMarket.getItems().addAll("INDOMARET","ALFAMART");
         miniMarket.getSelectionModel().select("Mini Market");
         
@@ -88,17 +96,21 @@ public class PembayaranController implements Initializable {
     }
 
     @FXML
-    private void hendleBayar(ActionEvent event) throws IOException {
-           String bayar = miniMarket.getValue();
-           String bayar1 = bank.getValue();
-          FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/fxml/invoice.fxml"));
+    private void hendleBayar(ActionEvent event) throws IOException, SQLException, ClassNotFoundException {
+        String bayar = miniMarket.getValue();
+        String bayar1 = bank.getValue();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/fxml/Invoice.fxml"));
         Parent Regis = loader.load();
+        InvoiceController control = loader.getController();
+        control.TampilkanPenumpang(nama_depan);
         Scene scene = new Scene(Regis);
         Stage Primarystage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         Primarystage.setResizable(false);
         Primarystage.setScene(scene);
         Primarystage.show();
     }
-    
+    public void setNama(String nama_depan){
+        this.nama_depan = nama_depan;
+    }
 }

@@ -80,19 +80,22 @@ public class DataPenumpangController implements Initializable {
     @FXML
     private void hendleContinue(ActionEvent event) throws SQLException, ClassNotFoundException, IOException {
         DBUtil db = new DBUtil();
-        String Title = title.getValue();
+        String title1 = title.getValue();
         String nama_depan = namaDepan.getText();//isi id yang di fxml .getText
         String nama_belakang = namaBelakang.getText();//isi id yang di fxml .getText 
-        String query2 = "INSERT INTO detail_penumpang (title, nama_depan, nama_belakang) VALUES ('"+Title+"', '"+nama_depan+"', '"+nama_belakang+"') ";
+        String nktp = nKTP.getText();//isi id yang di fxml .getText 
+        String query2 = "INSERT INTO detail_penumpang (title, nama_depan, nama_belakang, ktp) VALUES ('"+title1+"', '"+nama_depan+"', '"+nama_belakang+"', '"+nktp+"') ";
         try{
             db.dbExecuteUpdate(query2);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Register Success");
             alert.setHeaderText("Register Success");
             alert.showAndWait();
-             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/fxml/pembayaran.fxml"));
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/fxml/Pembayaran.fxml"));
             Parent Regis = loader.load();
+            PembayaranController control = loader.getController();
+            control.setNama(nama_depan);
             Scene scene = new Scene(Regis);
             Stage Primarystage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             Primarystage.setResizable(false);

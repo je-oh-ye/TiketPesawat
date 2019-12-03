@@ -8,6 +8,7 @@ package id.ac.ukdw.tiketonline;
 import id.ac.ukdw.tiketonline.db.DBUtil;
 import id.ac.ukdw.tiketonline.db.PesawatDAO;
 import id.ac.ukdw.tiketonline.model.Pesawat;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,11 +20,18 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -58,14 +66,47 @@ public class PesawatController implements Initializable {
 
     
     @FXML
-    public void btnPilih(ActionEvent event){
+    public void btnPilih(ActionEvent event) throws ClassNotFoundException, IOException{
+        try{
+        String query = "INSERT INTO detail_pesawat (maskapai, asal, tujuan, kelas ,jam_berangkat,harga) VALUES ('"+tabelPesawat.getSelectionModel().getSelectedItem().getMaskapai()+"',"
+                + "                                                                            '"+tabelPesawat.getSelectionModel().getSelectedItem().getKota_asal()+"',"
+                                                                                             +"'"+tabelPesawat.getSelectionModel().getSelectedItem().getKota_tujuan()+"',"
+                + "                                                                             '"+tabelPesawat.getSelectionModel().getSelectedItem().getKelas()+"',"
+                + "                                                                                '"+tabelPesawat.getSelectionModel().getSelectedItem().getJam_berangkat()+"',"
+                + "                                                                                 '"+tabelPesawat.getSelectionModel().getSelectedItem().getHarga()+"') ";
+            db.dbExecuteUpdate(query);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("SUCCESS");
+            alert.setHeaderText("SUCCESS");
+            alert.showAndWait();
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, "ADD FAILED");
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, e);
+    //      e.printStackTrace();
+            
+        }
         
-        
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/fxml/DataPenumpang.fxml"));
+        Parent Regis = loader.load();
+        Scene scene = new Scene(Regis);
+        Stage Primarystage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Primarystage.setResizable(false);
+        Primarystage.setScene(scene);
+        Primarystage.show();
     }
-    
-    @FXML
-    void handleback(ActionEvent event) {
 
+    @FXML
+    void handleback(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/fxml/Home.fxml"));
+        Parent Regis = loader.load();
+        Scene scene = new Scene(Regis);
+        Stage Primarystage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Primarystage.setResizable(false);
+        Primarystage.setScene(scene);
+        Primarystage.show();
     }   
     
 //    public void SearcTable() throws SQLException, ClassNotFoundException{
@@ -138,6 +179,7 @@ public class PesawatController implements Initializable {
         }
 
 
-   }
+    }
 }
+
 

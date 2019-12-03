@@ -127,7 +127,4 @@ public class Pesawat {
         this.jam_tiba = new SimpleStringProperty(jam_tiba);
         this.harga = new SimpleIntegerProperty(harga);
     }   
-
-
-    
 }

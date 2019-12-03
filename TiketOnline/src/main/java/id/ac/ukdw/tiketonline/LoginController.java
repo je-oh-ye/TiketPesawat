@@ -52,7 +52,16 @@ public class LoginController implements Initializable {
             String pass = txtPassword.getText();
             String query = "SELECT * from pengguna WHERE username = '"+user+"' AND password =  '"+pass+"'";
             ResultSet rs = db.dbExecuteQuery(query);  
-            if(rs.next()){
+            if(user.isEmpty() || pass.isEmpty()){
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("/fxml/Login.fxml"));
+                Parent Home = loader.load();
+                Scene scene = new Scene(Home);
+                Stage Primarystage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+                Primarystage.setResizable(false);
+                Primarystage.setScene(scene);
+                Primarystage.show();
+            }else if(rs.next()){
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("/fxml/Home.fxml"));
                 Parent Home = loader.load();
@@ -65,7 +74,7 @@ public class LoginController implements Initializable {
     }catch(SQLException e){
         System.out.println(e.getMessage());
         JOptionPane.showMessageDialog(null, "LOGIN FAILED");
-//      e.printStackTrace();
+
     }
     }
 

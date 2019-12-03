@@ -67,7 +67,14 @@ public class DetailPesawat {
     public void setJam_berangkat(String jam_berangkat) {
         this.jam_berangkat = new SimpleStringProperty(jam_berangkat);
     }
+    public String getJam_tiba() {
+        return jam_tiba.get();
+    }
 
+     
+    public void setJam_tiba(String jam_tiba) {
+        this.jam_tiba = new SimpleStringProperty(jam_tiba);
+    }
 
     public int getHarga() {
         return harga.get();
@@ -84,18 +91,20 @@ public class DetailPesawat {
     private SimpleStringProperty tujuan;
     private SimpleStringProperty kelas;
     private SimpleStringProperty jam_berangkat;
+    private SimpleStringProperty jam_tiba;
     private SimpleIntegerProperty harga;
     
     public DetailPesawat(){
         
     }
-    public DetailPesawat(int id_detail, String maskapai, String asal, String tujuan, String kelas, String jam_berangkat, int harga){
+    public DetailPesawat(int id_detail, String maskapai, String asal, String tujuan, String kelas, String jam_berangkat, String jam_tiba, int harga){
         this.id_detail = new SimpleIntegerProperty(id_detail);
         this.maskapai = new SimpleStringProperty(maskapai);
         this.asal = new SimpleStringProperty(asal);
         this.tujuan = new SimpleStringProperty(tujuan);
         this.kelas = new SimpleStringProperty(kelas);
         this.jam_berangkat = new SimpleStringProperty(jam_berangkat);
+        this.jam_tiba = new SimpleStringProperty(jam_tiba);
         this.harga = new SimpleIntegerProperty(harga);
     }   
 

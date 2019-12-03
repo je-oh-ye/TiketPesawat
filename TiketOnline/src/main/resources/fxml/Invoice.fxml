@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -25,14 +26,14 @@
             <Image url="@../gambar/output-onlinepngtools.png" />
          </image>
       </ImageView>
-      <Text layoutX="167.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kode Booking" />
+      <Text layoutX="191.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INVOICE" />
       <TextField fx:id="kotaAsal" layoutX="59.0" layoutY="260.0" prefHeight="26.0" prefWidth="88.0" />
-      <TextField fx:id="kotaTujuan" layoutX="59.0" layoutY="340.0" prefHeight="26.0" prefWidth="88.0" />
+      <TextField fx:id="kotaTujuan" layoutX="59.0" layoutY="335.0" prefHeight="26.0" prefWidth="88.0" />
       <Circle fill="DODGERBLUE" layoutX="173.0" layoutY="273.0" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
       <Circle fill="DODGERBLUE" layoutX="173.0" layoutY="353.0" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
       <Line endY="93.0" layoutX="173.0" layoutY="256.0" startY="22.0" />
-      <TextField fx:id="bandaraAsal" layoutX="193.0" layoutY="260.0" prefHeight="26.0" prefWidth="88.0" />
-      <TextField fx:id="bandaraTiba" layoutX="193.0" layoutY="340.0" prefHeight="26.0" prefWidth="88.0" />
+      <TextField fx:id="jamAsal" layoutX="193.0" layoutY="260.0" prefHeight="26.0" prefWidth="88.0" />
+      <TextField fx:id="jamTiba" layoutX="193.0" layoutY="334.0" prefHeight="26.0" prefWidth="88.0" />
       <Line endX="329.0" layoutX="104.0" layoutY="187.0" startX="-100.0" />
       <Line endX="329.0" layoutX="104.0" layoutY="206.0" startX="-100.0" />
       <Line endX="329.0" layoutX="104.0" layoutY="385.0" startX="-100.0" />
@@ -42,5 +43,9 @@
       <Text layoutX="132.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Harga" />
       <Text layoutX="103.0" layoutY="447.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nama " />
       <TextField fx:id="namaPenumpang" layoutX="171.0" layoutY="429.0" prefHeight="26.0" prefWidth="88.0" />
+      <Label layoutX="78.0" layoutY="286.0" text="Kota Asal" />
+      <Label layoutX="77.0" layoutY="366.0" text="Kota Tiba" />
+      <Label layoutX="198.0" layoutY="286.0" text="Jam Berangkat" />
+      <Label layoutX="214.0" layoutY="366.0" text="Jam Tiba" />
    </children>
 </AnchorPane>

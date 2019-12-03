@@ -23,18 +23,21 @@ import javafx.scene.control.TextField;
  */
 public class InvoiceController implements Initializable {
     DBUtil db = new DBUtil();
-    String nama_depan;
-    String code1;
-    int harga;
-    
+    private String nama_depan;
+    private String code1;
+    private int harga;
+    private String kota_asal;
+    private String kota_tujuan;
+    private String jam_berangkat ;
+    private String jam_tiba ;
     @FXML
     private TextField kotaAsal;
     @FXML
     private TextField kotaTujuan;
     @FXML
-    private TextField bandaraAsal;
+    private TextField jamAsal;
     @FXML
-    private TextField bandaraTiba;
+    private TextField jamTiba;
     @FXML
     private TextField harga1;
     @FXML
@@ -49,9 +52,13 @@ public class InvoiceController implements Initializable {
             namaPenumpang.setText(nama_depan);
         }
 
-    public void TampilkanHarga(int harga) throws SQLException, ClassNotFoundException{
+    public void TampilkanHarga(int harga, String kota_tujuan, String kota_asal, String jam_berangkat, String jam_tiba) throws SQLException, ClassNotFoundException{
             String harga2 = new StringBuilder().append(harga).toString(); 
             harga1.setText(harga2);
+            kotaAsal.setText(kota_asal);
+            kotaTujuan.setText(kota_tujuan);
+            jamAsal.setText(jam_berangkat);
+            jamTiba.setText(jam_tiba);
         }       
         
     @Override
@@ -59,7 +66,7 @@ public class InvoiceController implements Initializable {
         try {
             // TODO
             this.TampilkanPenumpang(nama_depan);
-            this.TampilkanHarga(harga);
+            this.TampilkanHarga(harga, kota_tujuan, kota_asal, jam_berangkat, jam_tiba);
         } catch (SQLException ex) {
             Logger.getLogger(InvoiceController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {

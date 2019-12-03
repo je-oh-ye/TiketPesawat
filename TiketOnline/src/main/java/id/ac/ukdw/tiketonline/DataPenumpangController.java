@@ -35,11 +35,16 @@ import javax.swing.JOptionPane;
  */
 public class DataPenumpangController implements Initializable {
     DBUtil db= new DBUtil();
-    int harga;
+    private int harga;
     private String asal1 ;
     private String tujuan1 ;
     private String tanggal1;
     private String kelas1 ;
+    private String kota_asal ;
+    private String kota_tujuan ;
+    private String jam_berangkat ;
+    private String jam_tiba ;
+        
     @FXML
     private Button back;
     @FXML
@@ -77,8 +82,12 @@ public class DataPenumpangController implements Initializable {
         Primarystage.setScene(scene);
         Primarystage.show();
     }
-    public void setHarga(int harga){
+     public void setHarga(int harga, String kota_tujuan, String kota_asal, String jam_berangkat, String jam_tiba){
         this.harga = harga;
+        this.kota_tujuan = kota_tujuan;
+        this.kota_asal = kota_asal;
+        this.jam_berangkat = jam_berangkat;
+        this.jam_tiba = jam_tiba;
     }
     @FXML
     private void hendleContinue(ActionEvent event) throws SQLException, ClassNotFoundException, IOException {
@@ -99,7 +108,7 @@ public class DataPenumpangController implements Initializable {
             Parent Regis = loader.load();
             PembayaranController control = loader.getController();
             control.setNama(nama_depan);
-            control.setHarga(harga);
+            control.setHarga(harga, kota_tujuan, kota_asal, jam_berangkat, jam_tiba);
             Scene scene = new Scene(Regis);
             Stage Primarystage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             Primarystage.setResizable(false);
@@ -110,8 +119,7 @@ public class DataPenumpangController implements Initializable {
         catch(SQLException e){
            Logger.getLogger(PesawatController.class.getName()).log(Level.SEVERE, null, e);
         }
-        
-        
+       
     }
     
 }

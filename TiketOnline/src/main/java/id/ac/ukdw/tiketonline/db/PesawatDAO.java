@@ -40,6 +40,7 @@ public class PesawatDAO {
             pesawat.setTanggal(rs.getString("tanggal"));
             pesawat.setKelas(rs.getString("kelas"));
             pesawat.setJam_berangkat(rs.getString("jam_berangkat"));
+            pesawat.setJam_tiba(rs.getString("jam_tiba"));
             pesawat.setHarga(rs.getInt("harga"));
             
         }
@@ -70,6 +71,7 @@ public class PesawatDAO {
             pesawat.setTanggal(rs.getString("tanggal"));
             pesawat.setKelas(rs.getString("kelas"));
             pesawat.setJam_berangkat(rs.getString("jam_berangkat"));
+            pesawat.setJam_tiba(rs.getString("jam_tiba"));
             pesawat.setHarga(rs.getInt("harga"));
             pesawatList.add(pesawat);
         }
@@ -86,6 +88,7 @@ public class PesawatDAO {
                 + "tanggal = '" + pesawat.getTanggal() + "',"
                 + "kelas= '" + pesawat.getKelas() + "',"
                 + "jam_berangkat = '" + pesawat.getJam_berangkat() + "',"
+                + "jam_tiba = '" + pesawat.getJam_tiba() + "',"
                 + "harga = '" + pesawat.getHarga() + "',"
                 + "WHERE id_pesawat='" + id_pesawat + "'";
         try {

@@ -43,7 +43,15 @@ public class PesawatController implements Initializable {
     private String tujuan ;
     private String tanggal;
     private String kelas ;
+    private String kota_tujuan ;
+    private String kota_asal ;
+    private String jam_berangkat ;
+    private String jam_tiba ;
     private int harga ;
+    private int adult ;
+    private int child ;
+    private int infant ;
+    
     
     @FXML
     private TableView<Pesawat> tabelPesawat;
@@ -60,22 +68,41 @@ public class PesawatController implements Initializable {
     @FXML
     private TableColumn<Pesawat, Integer> col_jam;
     @FXML
+    private TableColumn<Pesawat, Integer> col_jamTiba;
+    @FXML
     private TableColumn<Pesawat, Integer> col_harga;
+    
     @FXML
     private Button btnPilih;
     @FXML
     private Button btnCari;
     
+    public void jumlahKursi(int adult, int infant, int child){
+        this.adult = adult;
+        this.child = child;
+        this.infant = infant;
+    }  
+        
     @FXML
     public void btnPilih(ActionEvent event) throws ClassNotFoundException, IOException{
+        jam_berangkat = tabelPesawat.getSelectionModel().getSelectedItem().getJam_berangkat();
+        jam_tiba = tabelPesawat.getSelectionModel().getSelectedItem().getJam_tiba();
+        kota_tujuan = tabelPesawat.getSelectionModel().getSelectedItem().getKota_tujuan();
+        kota_asal = tabelPesawat.getSelectionModel().getSelectedItem().getKota_asal();
+        harga = tabelPesawat.getSelectionModel().getSelectedItem().getHarga();
+        int kursiBaru = tabelPesawat.getSelectionModel().getSelectedItem().getJumlah_kursi();
+        int total_baru = kursiBaru - adult - child - infant;
+        String query1 = "UPDATE pesawat SET jumlah_kursi='"+total_baru+"' WHERE kota_tujuan='"+kota_tujuan+"' AND kota_asal='"+kota_asal+"' AND harga='"+harga+"'";
         try{
-        String query = "INSERT INTO detail_pesawat (maskapai, asal, tujuan, kelas ,jam_berangkat,harga) VALUES ('"+tabelPesawat.getSelectionModel().getSelectedItem().getMaskapai()+"',"
-                + "                                                                            '"+tabelPesawat.getSelectionModel().getSelectedItem().getKota_asal()+"',"
-                                                                                             +"'"+tabelPesawat.getSelectionModel().getSelectedItem().getKota_tujuan()+"',"
-                + "                                                                             '"+tabelPesawat.getSelectionModel().getSelectedItem().getKelas()+"',"
-                + "                                                                                '"+tabelPesawat.getSelectionModel().getSelectedItem().getJam_berangkat()+"',"
-                + "                                                                                 '"+tabelPesawat.getSelectionModel().getSelectedItem().getHarga()+"') ";
+        String query = "INSERT INTO detail_pesawat (maskapai, asal, tujuan, kelas ,jam_berangkat,jam_tiba,harga) VALUES ('"+tabelPesawat.getSelectionModel().getSelectedItem().getMaskapai()+"',"
+                + " '"+tabelPesawat.getSelectionModel().getSelectedItem().getKota_asal()+"',"
+                + " '"+tabelPesawat.getSelectionModel().getSelectedItem().getKota_tujuan()+"',"
+                + " '"+tabelPesawat.getSelectionModel().getSelectedItem().getKelas()+"',"
+                + " '"+tabelPesawat.getSelectionModel().getSelectedItem().getJam_berangkat()+"',"
+                + " '"+tabelPesawat.getSelectionModel().getSelectedItem().getJam_tiba()+"',"
+                + " '"+tabelPesawat.getSelectionModel().getSelectedItem().getHarga()+"') ";
             db.dbExecuteUpdate(query);
+            db.dbExecuteUpdate(query1);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("SUCCESS");
             alert.setHeaderText("SUCCESS");
@@ -83,23 +110,21 @@ public class PesawatController implements Initializable {
         }catch(SQLException e){
             System.out.println(e.getMessage());
             JOptionPane.showMessageDialog(null, "ADD FAILED");
-            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, e);
-    //      e.printStackTrace();
-            
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, e);   
         }
-        harga = tabelPesawat.getSelectionModel().getSelectedItem().getHarga();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/fxml/DataPenumpang.fxml"));
         Parent Regis = loader.load();
         DataPenumpangController control = loader.getController();
-        control.setHarga(harga);
+        control.setHarga(harga, kota_tujuan, kota_asal, jam_berangkat, jam_tiba);
         Scene scene = new Scene(Regis);
         Stage Primarystage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         Primarystage.setResizable(false);
         Primarystage.setScene(scene);
         Primarystage.show();
     }
-
+        
+    
     @FXML
     void handleback(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
@@ -121,6 +146,7 @@ public class PesawatController implements Initializable {
         col_kursi.setCellValueFactory(new PropertyValueFactory("jumlah_kursi"));
         col_class.setCellValueFactory(new PropertyValueFactory("kelas"));
         col_jam.setCellValueFactory(new PropertyValueFactory("jam_berangkat"));
+        col_jamTiba.setCellValueFactory(new PropertyValueFactory("jam_tiba"));
         col_harga.setCellValueFactory(new PropertyValueFactory("harga"));
         ObservableList<Pesawat> data = FXCollections.observableArrayList();
         String sql = "SELECT * FROM pesawat WHERE kota_asal LIKE '%"+asal+"%' AND kota_tujuan LIKE '%"+tujuan+"%' AND kelas LIKE '%"+kelas+"%'";
@@ -136,6 +162,7 @@ public class PesawatController implements Initializable {
             pesawat.setTanggal(rs1.getString("tanggal"));
             pesawat.setKelas(rs1.getString("kelas"));
             pesawat.setJam_berangkat(rs1.getString("jam_berangkat"));
+            pesawat.setJam_tiba(rs1.getString("jam_tiba"));
             pesawat.setHarga(rs1.getInt("harga"));
         
             data.add(pesawat);

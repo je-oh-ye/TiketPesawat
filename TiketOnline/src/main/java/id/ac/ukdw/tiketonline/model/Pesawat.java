@@ -82,6 +82,14 @@ public class Pesawat {
     public void setJam_berangkat(String jam_berangkat) {
         this.jam_berangkat = new SimpleStringProperty(jam_berangkat);
     }
+        public String getJam_tiba() {
+        return jam_tiba.get();
+    }
+
+     
+    public void setJam_tiba(String jam_tiba) {
+        this.jam_tiba = new SimpleStringProperty(jam_tiba);
+    }
 
 
     public int getHarga() {
@@ -101,12 +109,13 @@ public class Pesawat {
     private SimpleStringProperty tanggal;
     private SimpleStringProperty kelas;
     private SimpleStringProperty jam_berangkat;
+    private SimpleStringProperty jam_tiba;
     private SimpleIntegerProperty harga;
     
     public Pesawat(){
         
     }
-    public Pesawat(int id_pesawat, String maskapai, String kota_asal, String kota_tujuan, int jumlah_kursi, String tanggal, String kelas, String jam_berangkat, int harga){
+    public Pesawat(int id_pesawat, String maskapai, String kota_asal, String kota_tujuan, int jumlah_kursi, String tanggal, String kelas, String jam_berangkat, String jam_tiba, int harga){
         this.id_pesawat = new SimpleIntegerProperty(id_pesawat);
         this.maskapai = new SimpleStringProperty(maskapai);
         this.kota_asal = new SimpleStringProperty(kota_asal);
@@ -115,6 +124,7 @@ public class Pesawat {
         this.tanggal = new SimpleStringProperty(tanggal);
         this.kelas = new SimpleStringProperty(kelas);
         this.jam_berangkat = new SimpleStringProperty(jam_berangkat);
+        this.jam_tiba = new SimpleStringProperty(jam_tiba);
         this.harga = new SimpleIntegerProperty(harga);
     }   
 

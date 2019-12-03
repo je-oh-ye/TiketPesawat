@@ -81,14 +81,17 @@ public class HomeController implements Initializable {
     private void btnSearch(ActionEvent event) throws IOException, SQLException, ClassNotFoundException {
         String asal = txtForm.getText();//isi id yang di fxml .getText
         String tujuan = txtTo.getText();//isi id yang di fxml .getText 
-        String adult = txtAdult.getText();//isi id yang di fxml .getText
-        String infant = txtInfant.getText();//isi id yang di fxml .getText
-        String child = txtChild.getText();//isi id yang di fxml .getText 
+        String adult1 = txtAdult.getText();//isi id yang di fxml .getText
+        int adult = Integer.parseInt(adult1);
+        String infant1 = txtInfant.getText();//isi id yang di fxml .getText
+        int infant = Integer.parseInt(infant1);
+        String child1 = txtChild.getText();//isi id yang di fxml .getText 
+        int child = Integer.parseInt(child1);
         LocalDate date1 = date.getValue();
         String kelas = comboboxClass.getValue();
-        String query = "INSERT INTO search (asal1, tujuan1, adult1, infant1, child1, date1, kelas1) VALUES ('"+asal+"','"+tujuan+"','"+adult+"','"+infant+"','"+child+"','"+date1+"','"+kelas+"') ";
+        String query = "INSERT INTO search (asal1, tujuan1, adult1, infant1, child1, date1, kelas1) VALUES ('"+asal+"','"+tujuan+"','"+adult1+"','"+infant1+"','"+child1+"','"+date1+"','"+kelas+"') ";
         db.dbExecuteUpdate(query);
-         if(asal.isEmpty() || tujuan.isEmpty() || adult.isEmpty() && infant.isEmpty() && child.isEmpty()){
+         if(asal.isEmpty() || tujuan.isEmpty() || adult1.isEmpty() && infant1.isEmpty() && child1.isEmpty()){
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("SEARCH FAILED");
                 alert.setHeaderText("SEARCH FAILED !");
@@ -101,6 +104,7 @@ public class HomeController implements Initializable {
         Parent Regis = loader.load();
         PesawatController control = loader.getController();
         control.ShowTable(asal, tujuan, kelas);
+        control.jumlahKursi(adult, infant, child);
         Scene scene = new Scene(Regis);
         Stage Primarystage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         Primarystage.setResizable(false);

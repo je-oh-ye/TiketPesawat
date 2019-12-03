@@ -39,6 +39,7 @@ public class DetailPesawatDAO {
             detail.setTujuan(rs.getString("tujuan"));
             detail.setKelas(rs.getString("kelas"));
             detail.setJam_berangkat(rs.getString("jam_berangkat"));
+            detail.setJam_tiba(rs.getString("jam_tiba"));
             detail.setHarga(rs.getInt("harga"));
             
         }
@@ -67,6 +68,7 @@ public class DetailPesawatDAO {
             detail.setTujuan(rs.getString("tujuan"));
             detail.setKelas(rs.getString("kelas"));
             detail.setJam_berangkat(rs.getString("jam_berangkat"));
+            detail.setJam_tiba(rs.getString("jam_tiba"));
             detail.setHarga(rs.getInt("harga"));
             detailList.add(detail);
         }
@@ -81,6 +83,7 @@ public class DetailPesawatDAO {
                 + "tujuan = '" + detail.getTujuan() + "',"
                 + "kelas= '" + detail.getKelas() + "',"
                 + "jam_berangkat = '" + detail.getJam_berangkat() + "',"
+                + "jam_tiba = '" + detail.getJam_tiba() + "',"
                 + "harga = '" + detail.getHarga() + "',"
                 + "WHERE id_detail='" + id_detail + "'";
         try {

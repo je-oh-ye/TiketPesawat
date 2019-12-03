@@ -5,7 +5,6 @@
  */
 package id.ac.ukdw.tiketonline.db;
 
-import id.ac.ukdw.tiketonline.model.Pengguna;
 import id.ac.ukdw.tiketonline.model.Pesawat;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -33,14 +32,14 @@ public class PesawatDAO {
         Pesawat pesawat = null;
         if (rs.next()) {
             pesawat = new Pesawat();
-            pesawat.setId_pesawat(rs.getInt("id_pesawat"));
+           pesawat.setId_pesawat(rs.getInt("id_pesawat"));
             pesawat.setMaskapai(rs.getString("maskapai"));
-            pesawat.setAsal(rs.getString("koat_asal"));
-            pesawat.setTujuan(rs.getString("kota_tujuan"));
-            pesawat.setJumlah(rs.getInt("jumlah_kursi"));
-            pesawat.setTujuan(rs.getString("tanggal"));
+            pesawat.setKota_asal(rs.getString("kota_asal"));
+            pesawat.setKota_tujuan(rs.getString("kota_tujuan"));
+            pesawat.setJumlah_kursi(rs.getInt("jumlah_kursi"));
+            pesawat.setTanggal(rs.getString("tanggal"));
             pesawat.setKelas(rs.getString("kelas"));
-            pesawat.setJam(rs.getInt("jam_berangkat"));
+            pesawat.setJam_berangkat(rs.getString("jam_berangkat"));
             pesawat.setHarga(rs.getInt("harga"));
             
         }
@@ -65,12 +64,12 @@ public class PesawatDAO {
             Pesawat pesawat = new Pesawat();
             pesawat.setId_pesawat(rs.getInt("id_pesawat"));
             pesawat.setMaskapai(rs.getString("maskapai"));
-            pesawat.setAsal(rs.getString("koat_asal"));
-            pesawat.setTujuan(rs.getString("kota_tujuan"));
-            pesawat.setJumlah(rs.getInt("jumlah_kursi"));
-            pesawat.setTujuan(rs.getString("tanggal"));
+            pesawat.setKota_asal(rs.getString("kota_asal"));
+            pesawat.setKota_tujuan(rs.getString("kota_tujuan"));
+            pesawat.setJumlah_kursi(rs.getInt("jumlah_kursi"));
+            pesawat.setTanggal(rs.getString("tanggal"));
             pesawat.setKelas(rs.getString("kelas"));
-            pesawat.setJam(rs.getInt("jam_berangkat"));
+            pesawat.setJam_berangkat(rs.getString("jam_berangkat"));
             pesawat.setHarga(rs.getInt("harga"));
             pesawatList.add(pesawat);
         }
@@ -81,12 +80,12 @@ public class PesawatDAO {
     public static void updatePesawat(int id_pesawat, Pesawat pesawat) throws SQLException, ClassNotFoundException {
         String updateStmt = "UPDATE pesawat SET id_pesawat='" + pesawat.getId_pesawat() + "',"
                 + "maskapai = '" + pesawat.getMaskapai() + "', "
-                + "kota_asal = '" + pesawat.getAsal() + "',"
-                + "kota_tujuan = '" + pesawat.getTujuan() + "',"
-                + "jumlah_kursi= '" + pesawat.getJumlah() + "',"
-                + "tanggal= '" + pesawat.getTanggal() + "',"
-                + "kelas = '" + pesawat.getKelas() + "',"
-                + "jam_berankat = '" + pesawat.getJam() + "',"
+                + "kota_asal = '" + pesawat.getKota_asal() + "',"
+                + "kota_tujuan = '" + pesawat.getKota_tujuan() + "',"
+                + "jumlah_kursi = '" + pesawat.getJumlah_kursi() + "',"
+                + "tanggal = '" + pesawat.getTanggal() + "',"
+                + "kelas= '" + pesawat.getKelas() + "',"
+                + "jam_berangkat = '" + pesawat.getJam_berangkat() + "',"
                 + "harga = '" + pesawat.getHarga() + "',"
                 + "WHERE id_pesawat='" + id_pesawat + "'";
         try {

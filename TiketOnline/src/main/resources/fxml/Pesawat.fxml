@@ -18,7 +18,7 @@
                   <Image url="@../gambar/Capture.PNG" />
                </image>
             </ImageView>
-            <Button fx:id="back" layoutX="14.0" layoutY="35.0" mnemonicParsing="false" onAction="#heandleback" prefHeight="31.0" prefWidth="84.0" style="-fx-background-radius: 40 0 0 40; -fx-background-color: #000000;" text="Back" textFill="#cdcdcd">
+            <Button fx:id="back" layoutX="14.0" layoutY="35.0" mnemonicParsing="false" onAction="#handleback" prefHeight="31.0" prefWidth="84.0" style="-fx-background-radius: 40 0 0 40; -fx-background-color: #000000;" text="Back" textFill="#cdcdcd">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -36,7 +36,7 @@
             <TableColumn fx:id="col_harga" prefWidth="107.0" text="Harga" />
         </columns>
       </TableView>
-      <Button layoutX="245.0" layoutY="332.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="111.0" style="-fx-background-color: f65a00;" text="Pilih" textFill="#cdcdcd">
+      <Button fx:id="btnPilih" layoutX="245.0" layoutY="332.0" mnemonicParsing="false" onAction="#btnPilih" prefHeight="31.0" prefWidth="111.0" style="-fx-background-color: f65a00;" text="Pilih" textFill="#cdcdcd">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>

@@ -99,6 +99,8 @@ public class HomeController implements Initializable {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/fxml/Pesawat.fxml"));
         Parent Regis = loader.load();
+        PesawatController control = loader.getController();
+        control.ShowTable(asal, tujuan, kelas);
         Scene scene = new Scene(Regis);
         Stage Primarystage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         Primarystage.setResizable(false);

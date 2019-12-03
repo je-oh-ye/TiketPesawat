@@ -25,6 +25,7 @@ public class InvoiceController implements Initializable {
     DBUtil db = new DBUtil();
     String nama_depan;
     String code1;
+    int harga;
     
     @FXML
     private TextField kotaAsal;
@@ -35,7 +36,7 @@ public class InvoiceController implements Initializable {
     @FXML
     private TextField bandaraTiba;
     @FXML
-    private TextField code;
+    private TextField harga1;
     @FXML
     private TextField namaPenumpang;
 
@@ -48,12 +49,17 @@ public class InvoiceController implements Initializable {
             namaPenumpang.setText(nama_depan);
         }
 
-    
+    public void TampilkanHarga(int harga) throws SQLException, ClassNotFoundException{
+            String harga2 = new StringBuilder().append(harga).toString(); 
+            harga1.setText(harga2);
+        }       
+        
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
             // TODO
             this.TampilkanPenumpang(nama_depan);
+            this.TampilkanHarga(harga);
         } catch (SQLException ex) {
             Logger.getLogger(InvoiceController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {

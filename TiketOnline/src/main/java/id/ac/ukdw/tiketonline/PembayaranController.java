@@ -36,6 +36,7 @@ import javafx.stage.Stage;
 public class PembayaranController implements Initializable {
     DBUtil db= new DBUtil();
     String nama_depan;
+    int harga;
 
     @FXML
     private Button back;
@@ -104,6 +105,7 @@ public class PembayaranController implements Initializable {
         Parent Regis = loader.load();
         InvoiceController control = loader.getController();
         control.TampilkanPenumpang(nama_depan);
+        control.TampilkanHarga(harga);
         Scene scene = new Scene(Regis);
         Stage Primarystage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         Primarystage.setResizable(false);
@@ -112,5 +114,8 @@ public class PembayaranController implements Initializable {
     }
     public void setNama(String nama_depan){
         this.nama_depan = nama_depan;
+    }
+    public void setHarga(int harga){
+        this.harga = harga;
     }
 }

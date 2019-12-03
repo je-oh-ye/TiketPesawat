@@ -34,8 +34,9 @@ import javax.swing.JOptionPane;
  * @author LENOVO
  */
 public class DataPenumpangController implements Initializable {
-      DBUtil db= new DBUtil();
-      private String asal1 ;
+    DBUtil db= new DBUtil();
+    int harga;
+    private String asal1 ;
     private String tujuan1 ;
     private String tanggal1;
     private String kelas1 ;
@@ -76,7 +77,9 @@ public class DataPenumpangController implements Initializable {
         Primarystage.setScene(scene);
         Primarystage.show();
     }
-
+    public void setHarga(int harga){
+        this.harga = harga;
+    }
     @FXML
     private void hendleContinue(ActionEvent event) throws SQLException, ClassNotFoundException, IOException {
         DBUtil db = new DBUtil();
@@ -96,6 +99,7 @@ public class DataPenumpangController implements Initializable {
             Parent Regis = loader.load();
             PembayaranController control = loader.getController();
             control.setNama(nama_depan);
+            control.setHarga(harga);
             Scene scene = new Scene(Regis);
             Stage Primarystage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             Primarystage.setResizable(false);
